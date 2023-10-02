@@ -1,0 +1,26 @@
+Dai i nomi delle persone iscritte a questo corso,
+determina la frequenza con cui compationo tali nomi
+e stampa i primi N (10?) nomi più frequenti,
+stampando per ciascuno il nome stesso ed valore assoluto
+della frequenza.
+Nel caso di nomi composti, li si tratti come un nome unico.
+
+
+Prendi l'elenco e cancella tutto tranne i nomi.
+	(i nomi sono contenuti nella terza colonna, le colonne sono separate da una virgola)
+
+*idea*
+metto in ordine alfabetico
+conto i blocchi consecutivi di nomi uguali
+
+*idea*
+prendo un nome per volta 
+	se è la prima volta che lo incontro, lo scrivo
+	se non è la prima volta, faccio un segno a fianco
+conto i segni e metto in ordine
+
+*idea*
+prendo il primo nome.
+conto quante volte compare
+e poi lo cancello
+e ricomincio
