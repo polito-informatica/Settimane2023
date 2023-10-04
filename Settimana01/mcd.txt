@@ -1,0 +1,24 @@
+CALCOLA MCD(A, B)
+
+1. MCD = 1
+
+2. prova = 2
+
+3. SE A è divisible per prova e B è divisible per prova
+3.1. ALLORA (3. è vero)  
+    MCD = prova
+3.2. ALTRIMENTI (3. è falso)   non ho niente da fare
+
+4. incrementa prova
+
+# se prova non è troppo grande
+5. SE prova <= min(A, B)
+5.1. ALLORA TORNA al punto 3
+
+6. stampa MCD
+
+
+
+(alternativa al punto 5
+      SE prova<=A e prova<=B
+)
