@@ -1,9 +1,7 @@
+# ESERCIZIO
 # Dato un nome di persona, stamparlo con la prima
 # lettera correttamente maiuscola
 # es: 'gigi' -> 'Gigi'
-
-from os import replace
-
 
 nome1 = 'pIeRoUpRipcO'
 prima_lettera = nome1[0]
