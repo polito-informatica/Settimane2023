@@ -21,6 +21,14 @@ I valori possibili sono `'C'` (Cuori), `'Q'` (Quadri), `'F'` (Fiori), `'P'` (Pic
 
 L'informazione sulla carta giocata è rappresentata tramite una stringa di due caratteri, di cui il primo carattere indichi il valore della carta, ed il secondo indichi il seme (codificato come sopra). Il valore della carta è rappresentato da un singolo carattere, compreso tra i seguenti: `A 2 3 4 5 6 7 J Q K`. Ad esempio, la stringa `"3F"` rappresenta il 3 di Fiori, mentre `"KC"` il re di Cuori.
 
+### Esempio di esecuzione del programma
+
+    Inserisci il seme: C
+    Inserisci la prima carta: 2F
+    Inserisci la seconda carta: 3P
+
+    La carta vincente è: 2F
+
 ## Regole del gioco
 
 Il valore delle carte è il seguente:
