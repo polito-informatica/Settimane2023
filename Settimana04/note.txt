@@ -1,0 +1,19 @@
+if condizione_bella:
+    if altra condizione:
+        TUTTO IL PROGRAMMA
+    else
+        ERRORE
+else
+    ERRORE
+
+
+    
+if not condizione_bella:
+    ERRORE
+    exit()
+
+if not altra_condizione:
+    ERRORE
+    exit()
+
+TUTTO IL PROGRAMMA
