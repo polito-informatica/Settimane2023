@@ -1,9 +1,5 @@
 # Leggi da tastiera 5 nomi
 
-from operator import index
-from traceback import print_tb
-
-
 NUM = 5
 
 nomi = []
