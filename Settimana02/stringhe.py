@@ -17,6 +17,7 @@ nome2 = nome1[0].upper() + nome1[1:].lower()
 print(nome2)
 
 nome3 = nome1.lower().replace(nome1[0], nome1[0].upper(), 1)
+nome3 = nome3.replace(nome3[0], nome3[0].upper(), 1)
 print(nome3)
 
 # ESERCIZIO PROPOSTO
