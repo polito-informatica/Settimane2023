@@ -8,8 +8,6 @@ in ciascuno dei gruppi.
 '''
 
 import csv
-import os
-import sys
 
 COLONNA_CDS = 6
 
