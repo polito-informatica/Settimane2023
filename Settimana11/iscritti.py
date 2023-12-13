@@ -8,6 +8,8 @@ in ciascuno dei gruppi.
 '''
 
 import csv
+import os
+import sys
 
 COLONNA_CDS = 6
 
@@ -19,8 +21,13 @@ def main():
             # ['326815', 'FALCHI', 'NICOLO'.....],
             # ['312191', 'FALDELLA', 'PIETRO FRANCESCO', ....]
     # ]
-    studenti = leggi_studenti('14BHDOA_2024_shuffled.csv')
-
+    try:
+        studenti = leggi_studenti('14BHDOA_2024_shuffled.csv')
+    except OSError:
+        print("Il file non esiste o non si può aprire")
+        exit()
+        
+ 
     # cerco quali sono i vari corsi di studio presenti nel file, e li metto
     # in una lista (senza duplicati)
     # elenco_cds = ['INF1T3', 'FIS1T3', ecc]
@@ -30,8 +37,11 @@ def main():
     # apro un file con il nome giusto
     # scrivo nel file tutti gli studenti del CdS corrispondente
     for cds in elenco_cds:
-        c = scrivi_studenti(cds, studenti)
-        print(f'Nel corso {cds} ci sono {c} studenti')
+        try:
+            c = scrivi_studenti(cds, studenti)
+            print(f'Nel corso {cds} ci sono {c} studenti')
+        except OSError:
+            print(f'Errore nella creazione del file relativo a {cds}')
 
 def leggi_studenti(nome_file):
     f = open(nome_file, 'r', encoding='utf-8', newline='')

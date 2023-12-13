@@ -27,6 +27,19 @@ def calcola_densita(popolazione, superficie):
     return densita
 
 
+def calcola_densita2(popolazione, superficie):
+    densita = []
+
+    for i in range(len(popolazione)):
+        try:
+            d = popolazione[i] / superficie[i]
+            densita.append(d)
+        except ZeroDivisionError:
+            densita.append(-1)  # valore 'sentinella' per indicare l'anomalia
+    return densita
+
+
+
 def scrivi_densita(nome_file, nazioni, densita):
     with open(nome_file, 'w', encoding='utf-8') as f:
         for i in range(len(nazioni)):
