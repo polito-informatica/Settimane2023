@@ -80,7 +80,7 @@ def bambino_piu_vicino(provincia_bambino_corrente, elenco_bambini, coordinate):
         if distanza < distanza_min:
             distanza_min = distanza
             indice_bambino = i
-    return indice_bambino
+    return indice_bambino, distanza_min
 
 
 def calcola_distanza(provinciaA, provinciaB, coordinate):
@@ -97,7 +97,7 @@ def calcola_distanza(provinciaA, provinciaB, coordinate):
         + math.cos(latA) * math.cos(latB) * math.sin(delta_lon / 2) ** 2
     )
 
-    distanza = 2 * 6371.0 * math.asin(math.sqrt(h))
+    distanza = 2 * 6731.0 * math.asin(math.sqrt(h)) # ho modificato il valore di R da 6371 a 6731 (valore corretto)
     return distanza
 
 def main():
@@ -114,11 +114,12 @@ def main():
     bambini_rimanenti.pop(bambino_corrente)
 
     while bambini_rimanenti:
-        prossimo = bambino_piu_vicino(
+        prossimo, distanza_km = bambino_piu_vicino(
             provincia_bambino_corrente, bambini_rimanenti, coordinate
         )
         provincia_bambino_corrente = bambini_rimanenti[prossimo]["provincia"]
         # print("regalo a", prossimo, provincia_bambino_corrente)
+        print(f' Viaggio di {distanza_km} km') # aggiunta la stampa della distanza in km tra Provincia A e Provincia B
         print(f'Regalo {bambini_rimanenti[prossimo]["regalo"]} a {bambini_rimanenti[prossimo]["cognome"]} {bambini_rimanenti[prossimo]["nome"]} ({bambini_rimanenti[prossimo]["provincia"]})')
 
         bambini_rimanenti.pop(prossimo)
