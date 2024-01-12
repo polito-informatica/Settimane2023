@@ -97,7 +97,7 @@ def calcola_distanza(provinciaA, provinciaB, coordinate):
         + math.cos(latA) * math.cos(latB) * math.sin(delta_lon / 2) ** 2
     )
 
-    distanza = 2 * 6371.0 * math.asin(math.sqrt(h))
+    distanza = 2 * 6731.0 * math.asin(math.sqrt(h)) # ho modificato il valore di R da 6371 a 6731 (valore corretto)
     return distanza
 
 def main():
