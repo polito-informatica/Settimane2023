@@ -18,7 +18,7 @@ Una volta calcolate le frequenze delle coppie consecutive di lemmi, il programma
 ### NOTE:
 
   -  (*1) i simboli di punteggiatura sono definiti dalla costante `string.punctuation`
-  -  (*2) nel testo dei Promessi Sposi, alla parola "don" segue "abbondio" per 233 volte, "rodrigo" 137 volte, "ferrante" 24 volte, "gonzalo" 20 volte, "filippo" 3 volte, "pietro" 2 volte, e così via. Il programma sceglierà casualmente uno dei primi 5 nomi, tra quelli con maggior frequenza. Nel caso in cui ci siano meno di 5 successori, si scelga casualmente tra quelli presenti. Nel caso in cui vi siano molti successori con la stessa frequenza, si scelga arbitrariamente.
+  -  (*2) nel testo dei Promessi Sposi, alla parola "don" segue "abbondio" per 233 volte, "rodrigo" 157 volte, "ferrante" 24 volte, "gonzalo" 20 volte, "filippo" 3 volte, "pietro" 2 volte, e così via. Il programma sceglierà casualmente uno dei primi 5 nomi, tra quelli con maggior frequenza. Nel caso in cui ci siano meno di 5 successori, si scelga casualmente tra quelli presenti. Nel caso in cui vi siano molti successori con la stessa frequenza, si scelga arbitrariamente.
 
 ### Esempio
 
