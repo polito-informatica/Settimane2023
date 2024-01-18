@@ -1,0 +1,228 @@
+# 46
+
+stringa è trasformabile in int se contiene la corretta codifica di un numero intero, e si può convertire con la funzione int(s)
+"37" ok, "-18" ok, "3t" no, "18-" no
+
+Ho 2 possibilità:
+- (SCONSIGLIABILE) analizzare la stringa e verificare i caratteri contenuti. Iniziare con + - 0-9, e continuare con una sequenza di cifre 0-9 senza altri caratteri.  Può avere evntualmente spazi all'inizio o alla fine, ma non in mezzo.
+- (PREFERIBILE) provare a fare la conversione  controllare se si verifica un'eccezione
+	ok = False
+	try:
+		n = int(s)
+		ok = True
+	except NumberFormatException:
+		print('non convertibile')
+		ok = False
+		
+	if ok: ...
+	
+# 45 e # 43
+
+except viene eseguita quando una delle istruzioni nel blocco try genera un'eccezione del tipo specificato nella Except
+
+	try:
+		f = open('abc.txt', 'r')  # catturata - vado in except
+		x = 1/0 # eccezione non catturata, termina il programma
+	except OSError:
+		# file non trovato
+		
+# 44 e # 42 e # 40 e # 35 e # 33 e # 29 e # 22 e # 18 e # 16
+
+set()
+contenitore mutabile (posso aggiungere/togliere elementi)
+valori contenuti devono essere immutabili (stringhe, numeri, tuple)
+non ammettono duplicati
+posso compiere le normali operazioni insiemistiche
+non è odinato (l'iterazione avviene in un ordine arbitrario)
+
+Differenze con liste:
+liste sono ordinate, set non ordinati
+liste possono avere elementi duplicati, set no
+liste contengono qualsiasi elemento, set solo immutabili
+set sono molto ottimizzati nelle operazioni di ricerca 
+
+# 41
+
+c = '7'
+int(c) --> 7
+
+non dovrebbe essere:
+ord(c) --> codice ascii del carattere (55)
+
+# 39 e # 14
+
+def funzione(argomento1, argomento2, argomento3):
+	...
+	...
+	return risultato
+
+argomenti: valori provenienti dal "chiamante" e inviati alla funzione, sotto forma di "alias" degli oggetti posseduti dal chiamante.
+Un funzione può avere 0, 1 o più argomenti.
+Alcuni argomenti possono essere opzionali, se viene fornito un valore di default
+	def complesso(reale, immaginaria=0.0)
+
+risultato: valore calcolato dalla funzione che viene trasferito al chiamante, come alias di un valore locale (il quale viene dimenticato quando la funzione termina)
+Il risultato calcolato è uno solo, ma se servisse trasferire più valori si può costruire e restituire una tupla (o lista) contenente i valori richiesti
+	return a,b,c
+	return (a,b,c)
+	
+# 38 e # 25
+
+la chiave di un dizionario deve essere un tipo di dato immutabile
+Quindi: lista NO, tupla SI
+
+# 37
+
+data una stringa s, posso convertirla in maiuscolo usando
+	s = s.upper()
+	
+Sbagliato: s.upper()
+Sbagliato: s = s.upper
+
+# 36
+
+L'istruzione genera eccezione perché colori è un insieme, e non è possibile accedere per "posizione" agli elementi di un insieme.
+
+# 34 e # 23
+
+gli operatori booleani sono quelli che fanno calcoli con i valori booleani True e False: and , or, not
+Li usiamo nelle condizioni complesse, per manipolare flag
+
+	if a>0 and a!=7:
+	
+# 32
+
+data una lista A = [1, 2, 3], si intende
+- copia di A : nuova variabile che fa riferimento ad nuova lista, che contiene gli stessi elementi
+	B = list(A), B = A[:], B = A.copy()
+- alias di A : nuova variabile che fa riferimento alla STESSA lista di A
+	B = A, passaggio di parametri a una funzione
+
+Considerando:
+	B.append(7)
+Modificando una copia di una lista, la lista originale non viene modificata.
+Modificando un alias di una lista, in realtà si modifica anche la lista originale.
+
+# 31 e # 21
+
+Tuple e liste sono analoghe (contenitori ordinati di valori qualsiasi, posso accedere per posizione e per range). 
+La differenza è che liste sono mutabili, le tuple NON sono mutabili.
+Una fuzione può restituire qualunque tipo di oggetto, quindi sicuramente una lista e anche una tupla.
+
+# 30
+
+If ed elif calcolano delle condizioni che determinano l'esecuzione o meno del blocco di istruzioni ad esse associato. Ci può essere una sola if, seguita opzionalmente da 1 o più elif.
+
+Nel caso in cui nessuna delle condizioni sia vera, il blocco else: (che è opzionale) verrà eseguito.
+
+	if lati>10:
+		print('troppi lati')
+	elif lati<=2:
+		print('non è un poligono')
+	else:
+		print('poligono ragionevole')
+		
+# 28
+
+quando una porzione di programma chiama una funzione passando uno più parametri, per ciascuno di questi parametri viene creato un alias, che è ricevuto dalla funzione inizializzando l'argomento relativo.
+
+	def funz(x, y):
+		...
+		
+	a = 5 
+	b = 4
+	funz(a, b)
+	
+x viene inizializzato come alias ad a
+y viene inizializzato come alias a b
+
+	funz(10, a+1)
+	
+viene creato un oggetto (int)10, e x viene inizialzato come riferimento a tale oggetto
+viene calcolato a+1, e il risultato sarà in nuovo oggetto, il cui riferimento inizializzerà il valore di y
+
+# 27
+
+a, b variabili float -> valore approssimato
+
+quindi il confronto a==b oppure a!=b non hanno senso
+
+anziché fare un controllo di uguaglianza, facciamo un controllo di uguaglianza approssimata: sono "abbastanza vicine" da poter essere condiserate uguali.
+
+	errore assoluto: abs(a-b) < epsilon_a
+	errore relativo: abs(a-b)/abs(a) < epsilon_r
+	usando la libreria standard:
+		math.isclose(a, b)
+		
+# 26
+
+	def funz(x, y):
+		...
+		
+	a = 5 
+	b = 4
+	funz(a, b)
+
+	x, y sono chiamati parametri formali
+		perché sono solo dei "nomi" interni a cui bisognerà associare un valore reale quando la funzione verrà chiamata
+	a, b sono chiamati parametri attuali
+		perché sono i valori effettivi con cui lavorerà la funzione
+		
+# 24
+
+A = [1, 2, 3]
+B = A
+B.append(7)
+allora facendo print(A) avrei [1, 2, 3, 7]
+
+per evitare aliasing potrei fare
+B = list(A)
+e quindi avrei A = [1,2,3] e B=[1,2,3,7]
+
+# 20
+
+convertire lista in insieme?
+	sì, solo gli elementi della lista sono immutabili
+	i duplicati vengono eliminati
+	l'ordine degli elementi viene stravolto
+
+convertire insieme in lista?
+	si può sempre
+	l'ordine degli elementi è arbitrario (spesso si usa sorted per averli in ordine noto)
+	
+# 19
+
+Immutabile: oggetto che non po' più modificare dopo averlo creato/inizializzato. Si potranno solitamente creare delle nuove copie modificate, ma l'oggetto originario rimane invariato.
+Mutabile: può essere modificato anche dopo la creazione.
+
+È un concetto riferito ai VALORI, non alle VARIABILI che ne fanno riferimento.
+
+Immutabili: numeri interi, reali, stringhe, tuple
+Mutabili: liste, insiemi, dizionari, file
+
+# 15
+
+s = s.lower()
+
+# 13
+
+dizionario
+
+due chiavi associate allo stesso valore?
+	SI, non c'è problema, anzi non me ne accorgo nemmeno
+
+due valori associati alla stessa chiave?
+	NO, le chiavi sono univoche (come un set)
+	e a ciasuna chiave è associato un solo valore
+	Attenzione: una chiave può essere associata a un singolo valore che sia un CONTENITORE che quindi contiene valori multipli
+		voti['s12345'] = [ 29, 30, 28, 30 ]
+		
+# 12
+
+dato = input()
+
+x = dato / 2
+
+errato perché input() restituisce sempre una stringa.
+
+Se voglio fare operazioni aritmentiche dovrò prima convertirlo in int() oppure in float(), ovviamente se ciò non genera eccezioni

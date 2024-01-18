@@ -1,0 +1,161 @@
+# 50
+
+Unità operativa
+Componenti: Registri (tra cui Flag), Unità Aritmetico Logica, Floating Point Unit
+Ruolo: eseguire le operazioni di lettura/scrittura/calcolo aritmetico ordinate dall'unità di controllo e salvarne i risultati.
+I dati e i risultati su cui lavora l'unità operativo sono memorizzati nei registri.
+
+# 49 e # 43 e # 42 e # 38
+
+BUS = infrastruttura condivisa di comunicazione tra i diversi componenti di un sistema di elaborazione
+
+infrastruttura = fili, connessioni
+condivisa = un unico gruppo di connessioni a cui fanno capo tutti i componenti
+componenti = CPU, Memoria Centrale, Interfacce Periferiche, Memorie Cache
+
+Il Bus serve per trasferire dati tra un qualunque coppia di componenti (uno per volta), sotto il controllo della unità di controllo della CPU.
+Il Bus si divide in 3 sotto-stutture:
+- Address Bus -> indirizzo della cella di memoria (o dell'unità periferica) da leggere o scrivere (sulla base dell'indirizzo si capisce quale componente è coinvolto)
+- Data Bus -> Dato che viene trasferito da un componente ad un altro componente
+- Control bus -> Una serie di segnali che gestiscono la temporizzazione delle attività (il clock che governa i cicli di bus, comando lettura/scrittura, stato operazione in corso/completata, ecc...)
+
+# 48
+
+PC e IR
+si trovano nell'unità di controllo della CPU
+PC contiene l'indirizzo di memoria della prossima istruzione che la CPU dovrà eseguire
+IR contiene la codifica binaria (letta dalla memoria all'indirizzo indicato dal PC) dell'istruzione da eseguire
+PC e IR permettono alla CPU di reperire, una dopo l'altra, tutte le istruzioni che compongono il programma da eseguire.
+
+# 47
+
+Address Bus di 24 bit 
+parallelismo di 16 byte
+	parallelismo interno alla ALU
+	parallelismo dei registri della UO
+	parallelismo delle celle di memoria
+	parallelismo del Data Bus
+	
+
+ABUS di 24 bit -> indirizzo di memoria è un intero su 24 bit -> potrò avere fino a 2^24 celle di memoria
+
+Ciascuna cella contiene 16 byte.
+
+Memoria massima = max n. celle * dimensione di ciascuna cella 
+= 2^24 * 16 byte 
+= 2^28 byte 
+= 2^8 * 2^20 byte
+= 256 M B
+
+	MEM = 2^ABUS * DBUS
+
+# 46 e # 45
+
+ALU è un circuito in grado di calcolare tutte le operazioni possibili sui numeri interi (CA2)
+Somme, sottrazioni, moltiplicazioni, (talvolta divisioni e modulo), confronti, operazioni booleane sui bit (and, or not).
+Le operazioni sono svolte prendendo in ingresso i valori dai registri e depositando il risultato in un altro registro, contemporaneamente aggiornando il registro dei Flag.
+L'operazione svolta dalla ALU e i registri coinvolti sono decisi dall'unità di controllo.
+
+
+# 44 e # 35
+
+Gerarchia della memoria / delle memorie.
+In un sistema di elaborazione ci sono varie tipologie di memorie, che variano in funzione della velocità di accesso, del costo, della capienza, della persistenza.
+All'aumentare della velocità aumentano i costi e quindi diminuisce la capienza.
+Nel sistema di elaborazione si organizza una "catena" di memorie, partendo da quelle più veloci che sono poste vicino alla CPU , ed allontanandosi memorie via via più capienti e più lente.
+Un esempio di gerarchia:
+Registri della UO -> Cache di 1 livello -> Cache di 2 livello -> Memoria principale -> Memorie di massa (SSD, HD)
+
+# 41 e # 39
+
+RAM è la memoria centrale dell'elaboratore.
+(RAM = Random Access Memory) (DRAM, DDR, ...)
+
+la RAM contiene
+- il programma da eseguire
+- i dati di input al programma
+- i risltati calcolati dal programma
+
+la CPU ha accesso diretto ai contenuti della RAM
+
+# 40 e # 32
+
+Ciclo macchina
+è il ciclo, ripetuto all'infinito, con cui la CPU esegue le istruzioni dei programmi.
+
+1. FETCH
+	la CPU (la UC) legge la prossima istruzione da eseguire dalla memoria
+		MEM(PC) -> IR
+		PC+1 -> PC
+2. DECODE
+	la CPU (la UC) legge il valore di IR appena ricevuto, lo analizza e "capisce" quali siano le operazioni da svolgere (da FARE svolgere alle diverse componenti del sistema)
+3. EXECUTE
+	la UC ha inviato i comandi alle UO, alla MEM, e alle altre componenti coinvolte, e queste eseguono i comandi ricevuti, mentre la UC attende il loro completamento
+
+# 37
+
+UC è all'interno della CPU
+Controllare l'esecuzione dei programmi gestendo il ciclo di esecuzione delle istruzioni.
+Invia i comandi a tutti i componenti del sistema.
+Riceve le informazioni di stato da tutti i componenti del sistema.
+Gestisce anche la temporizzazione delle varie operazioni, e dell'accesso al bus
+
+# 36
+
+RAM da 8 bit  (1 byte) 8b = 1B
+1024 celle di memoria
+
+numeri in floating point doppia precisione
+
+(single precision = 32 bit, doppia precisione = 64 bit)
+
+1 numero = 64 bit = 8 byte
+
+RAM da 1024 byte
+
+Numeri memorizzabili = 1024 B / 8 B = 128 numeri
+
+# 34
+
+la FPU è un componente dell'unità operativa dedicato al calcolo di operazioni tra operandi in virgola mobile
+Esegue le operazioni (aritmetiche, potenze e radici, esponenziali, trigonometriche) tra i valori contenuti nei registri, su ordine della unità di controllo.
+
+Si distingue dalla ALU che ha lo stesso scopo ma lavora sui numeri interi.
+
+Il tempo necessario per svolgere un'operazione in virgola mobile è decisamente superiore rispetto ad un'operazione tra numeri interi.
+
+# 33
+
+F(A,B,C) = NOT(A + B x C) + NOT(A)
+G(A,B,C) = A x (B + C) + NOT(A)
+
+F(A,B,C) = G(A,B,C) per ogni combinazione di A, B, C?
+
+ABC F G 
+000 1 1
+001 1 1
+010 1 1
+011 1 1
+100 0 0
+101 0 1 *
+110 0 1 *
+111 0 1 *
+
+F e G non sono equivalenti perché per alcune combinazioni delle variabili indipendenti A,B,C, il valore calcolato dalle funzioni è diverso (righe marcate con *)
+
+# 31
+
+Moderno PC portatile
+
+CPU clock	f = 2.x - 3.x GHz ~ T = 500 ns - 333 ns
+MEM centrale   16 GB - 32 GB
+MEM massa   512 GB SSD - 1 TB o 2 TB (SSD o HD)
+Display risoluzione 4k (3000x2000) minimo 1920x1080
+
+# 30
+
+Clock è un segnale periodico di temporizzazione interno al sistema di elaborazione
+Il suo scopo è di fornire la temporizzazione per le diverse attività interne alla CPU. I dati vengono letti all'inizio di un ciclo di clock ed i risultati sono disponibili entro la fine del ciclo di clock.
+È caratterizzato da una frequenza f (in MHz o GHz) o da un periodo T = 1/f (in us o ns) che governa le operazioni interne.
+La frequenza di clock può essere aumentata o ridotta in funzione del carico di lavoro del sistema e/o delle necessità di risparmio energetico.
+
